@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from mcp.server.fastmcp import FastMCP
 
+from .cortex import get_mcp_cortex_capabilities
 from .models import Source, SOURCE_REGISTRY
 from .retriever import APIRetriever
 
@@ -97,7 +98,10 @@ async def tool_list_sources() -> dict:
     sources = []
     for info in SOURCE_REGISTRY.values():
         sources.append(info.model_dump(mode="json"))
-    return {"sources": sources}
+    return {
+        "sources": sources,
+        "mcp_cortex_capabilities": get_mcp_cortex_capabilities(),
+    }
 
 
 def register_tools(mcp: FastMCP, retriever: APIRetriever) -> None:

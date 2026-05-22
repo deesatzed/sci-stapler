@@ -184,6 +184,20 @@ class TestToolListSources:
             assert "description" in s
             assert "capabilities" in s
 
+    @pytest.mark.asyncio
+    async def test_exposes_mcp_cortex_capabilities(self):
+        result = await tool_list_sources()
+        profiles = result["mcp_cortex_capabilities"]
+
+        assert profiles["profile_type"] == "static_capability_contracts"
+        assert set(profiles["tools"]) == {
+            "search_papers",
+            "get_paper",
+            "lookup_paper",
+            "search_abstracts",
+            "list_sources",
+        }
+
 
 class TestToolSearchPapersError:
     """Test exception handling in tool_search_papers (lines 23-24)."""
