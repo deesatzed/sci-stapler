@@ -24,6 +24,20 @@ Provides AI agents with unified, rate-safe, cached access to 5 open biomedical l
 | `search_abstracts` | Fast abstract-only search across ~50M works via OpenAlex. |
 | `list_sources` | List available sources with capabilities and coverage info. |
 
+## MCP-Cortex Showpiece
+
+`agentmedq` includes a small MCP-Cortex adoption showpiece. The existing
+`list_sources` tool now returns static MCP-Cortex-style capability profiles under
+`mcp_cortex_capabilities`, while preserving the same five public MCP tools.
+
+The profiles describe each tool's read-only status, network effects, data flow,
+risk class, rollback expectation, and applied Codex-CAM methodology IDs. This
+lets MCP clients inspect tool effects without requiring a new server process or a
+runtime dependency on `mcp-cortex`.
+
+See [docs/showpieces/mcp-cortex-capability-profiles.md](docs/showpieces/mcp-cortex-capability-profiles.md)
+for the full showpiece, verification evidence, and Codex-CAM provenance.
+
 ## Installation
 
 ```bash
